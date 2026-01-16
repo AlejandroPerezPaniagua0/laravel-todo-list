@@ -17,7 +17,6 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name("regi
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::middleware('auth')->group(function () {
     Route::prefix('task')->group(function () {
@@ -26,5 +25,5 @@ Route::middleware('auth')->group(function () {
         Route::put('/{task}', [TaskController::class, 'update'])->name('tasks.update');
         Route::delete('/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     });
-    Route::post("/logout", [AuthController::class, "logout"]);
+    Route::post("/logout", [AuthController::class, "logout"])->name("logout");
 });
