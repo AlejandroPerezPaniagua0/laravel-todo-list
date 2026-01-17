@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserSettingsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,5 +26,12 @@ Route::middleware('auth')->group(function () {
         Route::put('/{task}', [TaskController::class, 'update'])->name('tasks.update');
         Route::delete('/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     });
+
+    Route::prefix('settings')->group(function () {
+        Route::get('/', [UserSettingsController::class, 'index'])->name('settings.index');
+        Route::put('/', [UserSettingsController::class, 'update'])->name('settings.update');
+        Route::post('/reset', [UserSettingsController::class, 'reset'])->name('settings.reset');
+    });
+
     Route::post("/logout", [AuthController::class, "logout"])->name("logout");
 });
