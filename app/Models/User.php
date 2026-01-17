@@ -51,8 +51,14 @@ class User extends Authenticatable
         return $this->hasMany(Task::class);
     }
 
-    public function userSettings() 
+    public function settings() 
     {
-        return $this->hasMany(UserSetting::class);
+        return $this->hasOne(UserSetting::class);
+    }
+
+    // Helper to get the theme of the user
+    public function getTheme()
+    {
+        return $this->settings?->theme ?? 'light';
     }
 }
