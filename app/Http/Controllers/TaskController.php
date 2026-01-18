@@ -11,15 +11,22 @@ class TaskController extends Controller
 {
     public function __construct() {}
 
-    // Display all tasks belonging to the authenticated user
+    /**
+     * Display all tasks belonging to the authenticated user
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index(Request $request)
     {
-        // En el index
         $tasks = Auth::user()->tasks()->orderBy('due_date')->get();
         return view('tasks.index', compact('tasks'));
     }
 
-    // Store a new task
+    /**
+     * Store a new task
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -46,7 +53,12 @@ class TaskController extends Controller
         return redirect()->back()->with('success', 'Task created successfully');
     }
 
-    // Update an existing task
+    /**
+     * Update an existing task
+     * @param Request $request
+     * @param Task $task
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, Task $task)
     {
         // Prevent users from modifying tasks they do not own
@@ -131,7 +143,11 @@ class TaskController extends Controller
         return;
     }
 
-    // Soft delete a task
+    /**
+     * Soft delete a task
+     * @param Task $task
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Task $task)
     {
         // Prevent users from deleting tasks they do not own

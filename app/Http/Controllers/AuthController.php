@@ -11,14 +11,27 @@ class AuthController extends Controller
 {
     public function __construct() {}
 
-    public function showLoginForm() 
+    /**
+     * Show the login form
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function showLoginForm()
     {
         return view("auth.login");
     }
-    public function showRegisterForm() 
+    /**
+     * Show the register form
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function showRegisterForm()
     {
         return view('auth.register');
     }
+    /**
+     * Login the user
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function login(Request $request)
     {
         $validated = $request->validate([
@@ -29,13 +42,16 @@ class AuthController extends Controller
         if (!Auth::attempt($validated)) {
             return back()->withErrors(["email" => "invalid credentials"])->withInput();
         }
-
         $request->session()->regenerate();
-        // Temporary redirect until UI is implemented
+        
         return redirect()->route('home');
-
     }
 
+    /**
+     * Register the user
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function register(Request $request)
     {
         $validated = $request->validate([
@@ -52,15 +68,20 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        // Temporary redirect until UI is implemented
         return redirect()->route('home');
     }
 
+    /**
+     * Logout the user
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect()->route('login');
     }
 }
