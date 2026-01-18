@@ -62,7 +62,7 @@ This application showcases:
 
 ```bash
 # Clone repository
-git clone https://github.com/alejandro-perez-paniagua/laravel-todo-list.git
+git clone https://github.com/AlejandroPerezPaniagua0/laravel-todo-list
 cd laravel-todo-list
 
 # Install dependencies
@@ -327,9 +327,9 @@ MIT License - feel free to use this project for learning or portfolio purposes.
 Full-Stack Developer | Laravel Specialist
 
 - 🌐 Portfolio: [Coming soon](#)
-- 💼 LinkedIn: [linkedin.com/in/alejandro-perez-paniagua](#)
-- 🐙 GitHub: [@alejandro-perez-paniagua](https://github.com/alejandro-perez-paniagua)
-- 📧 Email: [contact@alejandro-perez.dev](#)
+- 💼 LinkedIn: [https://www.linkedin.com/in/perez-paniagua-alejandro/](#)
+- 🐙 GitHub: [@AlejandroPerezPaniagua0](https://github.com/AlejandroPerezPaniagua0)
+- 📧 Email: [alejandro.perez.paniagua1@gmail.com](#)
 
 > *This project demonstrates my ability to build clean, maintainable web applications following industry best practices (MVC, KISS, PSR-12) with modern PHP and Laravel.*
 
@@ -674,10 +674,10 @@ Licencia MIT - siéntete libre de usar este proyecto para aprendizaje o propósi
 
 Desarrollador Full-Stack | Especialista en Laravel
 
-- 🌐 Portfolio: [Próximamente](#)
-- 💼 LinkedIn: [linkedin.com/in/alejandro-perez-paniagua](#)
-- 🐙 GitHub: [@alejandro-perez-paniagua](https://github.com/alejandro-perez-paniagua)
-- 📧 Email: [contact@alejandro-perez.dev](#)
+- 🌐 Portfolio: [Coming soon](#)
+- 💼 LinkedIn: [https://www.linkedin.com/in/perez-paniagua-alejandro](#)
+- 🐙 GitHub: [@AlejandroPerezPaniagua0](https://github.com/AlejandroPerezPaniagua0)
+- 📧 Email: [alejandro.perez.paniagua1@gmail.com](#)
 
 > *Este proyecto demuestra mi capacidad para construir aplicaciones web limpias y mantenibles siguiendo las mejores prácticas de la industria (MVC, KISS, PSR-12) con PHP moderno y Laravel.*
 
