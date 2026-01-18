@@ -20,7 +20,7 @@ class UserSettingsController extends Controller
             ['user_id' => Auth::id()],
             [
                 'theme' => 'light',
-                'language' => 'es',
+                'language' => 'en',
                 'email_notifications' => true,
                 'timezone' => 'UTC',
                 'date_format' => 'd/m/Y',
@@ -55,17 +55,18 @@ class UserSettingsController extends Controller
             'timezone' => 'required|string',
             'date_format' => 'required|string',
         ]);
-
-        // Convertir el checkbox no marcado a false
         $validated['email_notifications'] = $request->has('email_notifications');
 
-        // Actualizar o crear la configuración del usuario
+        // Update or create the user settings
         UserSetting::updateOrCreate(
             ['user_id' => Auth::id()],
             $validated
         );
 
-        return redirect()->back()->with('success', 'Configuraciones actualizadas exitosamente');
+        // Set the new locale immediately
+        app()->setLocale($validated['language']);
+
+        return redirect()->back()->with('success', __('settings.updated_successfully'));
     }
 
     /**
@@ -79,13 +80,13 @@ class UserSettingsController extends Controller
         if ($settings) {
             $settings->update([
                 'theme' => 'light',
-                'language' => 'es',
+                'language' => 'en',
                 'email_notifications' => true,
                 'timezone' => 'UTC',
                 'date_format' => 'd/m/Y',
             ]);
         }
 
-        return redirect()->back()->with('success', 'Configuraciones restauradas a valores por defecto');
+        return redirect()->back()->with('success', __('settings.restored_successfully'));
     }
 }

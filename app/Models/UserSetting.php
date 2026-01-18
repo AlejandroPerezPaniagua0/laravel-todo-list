@@ -21,32 +21,31 @@ class UserSetting extends Model
 
     protected $attributes = [
         'theme' => 'light',
-        'language' => 'es',
+        'language' => 'en',
         'email_notifications' => true,
         'timezone' => 'UTC',
         'date_format' => 'd/m/Y',
     ];
 
-    // Relación con el usuario
     public function user() 
     {
         return $this->belongsTo(User::class);
     }
 
-    // Opciones disponibles para cada campo
+    // Available options for each field
     public static function getThemeOptions()
     {
         return [
-            'light' => 'Claro',
-            'dark' => 'Oscuro',
+            'light' => __('settings.theme_light'),
+            'dark' => __('settings.theme_dark'),
         ];
     }
 
     public static function getLanguageOptions()
     {
         return [
-            'es' => 'Español',
-            'en' => 'English',
+            'en' => __('settings.language_en'),
+            'es' => __('settings.language_es'),
         ];
     }
 

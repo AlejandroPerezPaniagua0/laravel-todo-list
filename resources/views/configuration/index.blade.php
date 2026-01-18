@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Configuración')
+@section('title', __('settings.configuration'))
 
 @section('container-class', 'max-w-4xl')
 
@@ -20,14 +20,14 @@
     <div class="flex justify-between items-center mb-8">
         <div>
             <h1 class="text-4xl font-bold text-gray-800 dark:text-white transition-colors duration-300">
-                <i class="fas fa-cog text-indigo-600 dark:text-indigo-400"></i> Configuración
+                <i class="fas fa-cog text-indigo-600 dark:text-indigo-400"></i> {{ __('settings.configuration') }}
             </h1>
-            <p class="text-gray-600 dark:text-gray-300 mt-2">Personaliza tu experiencia</p>
+            <p class="text-gray-600 dark:text-gray-300 mt-2">{{ __('settings.personalize_experience') }}</p>
         </div>
         <div class="flex gap-3">
             <a href="{{ route('tasks.index') }}" class="bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition duration-200 flex items-center gap-2">
                 <i class="fas fa-tasks"></i>
-                Mis Tareas
+                {{ __('settings.my_tasks') }}
             </a>
         </div>
     </div>
@@ -48,7 +48,7 @@
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6 transition-colors duration-300">
             <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-2 border-b border-gray-200 dark:border-gray-700 pb-3">
                 <i class="fas fa-palette text-indigo-600 dark:text-indigo-400"></i>
-                Apariencia
+                {{ __('settings.appearance') }}
             </h2>
 
             <div class="space-y-6">
@@ -56,9 +56,9 @@
                     <div class="flex-1">
                         <label class="text-gray-800 dark:text-white font-semibold text-lg flex items-center gap-2">
                             <i class="fas fa-moon text-indigo-500 dark:text-indigo-400"></i>
-                            Tema
+                            {{ __('settings.theme') }}
                         </label>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Selecciona el tema de la interfaz</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">{{ __('settings.theme_description') }}</p>
                     </div>
                     <div class="flex-shrink-0 ml-4">
                         <select 
@@ -80,9 +80,9 @@
                     <div class="flex-1">
                         <label class="text-gray-800 dark:text-white font-semibold text-lg flex items-center gap-2">
                             <i class="fas fa-language text-indigo-500 dark:text-indigo-400"></i>
-                            Idioma
+                            {{ __('settings.language') }}
                         </label>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Idioma de la aplicación</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">{{ __('settings.language_description') }}</p>
                     </div>
                     <div class="flex-shrink-0 ml-4">
                         <select 
@@ -104,7 +104,7 @@
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6 transition-colors duration-300">
             <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-2 border-b border-gray-200 dark:border-gray-700 pb-3">
                 <i class="fas fa-bell text-indigo-600 dark:text-indigo-400"></i>
-                Notificaciones
+                {{ __('settings.notifications') }}
             </h2>
 
             <div class="space-y-6">
@@ -112,9 +112,9 @@
                     <div class="flex-1">
                         <label class="text-gray-800 dark:text-white font-semibold text-lg flex items-center gap-2">
                             <i class="fas fa-envelope text-indigo-500 dark:text-indigo-400"></i>
-                            Notificaciones por Email
+                            {{ __('settings.email_notifications') }}
                         </label>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Recibir notificaciones en tu correo</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">{{ __('settings.email_notifications_description') }}</p>
                     </div>
                     <div class="flex-shrink-0 ml-4">
                         <div class="relative">
@@ -137,7 +137,7 @@
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6 transition-colors duration-300">
             <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-2 border-b border-gray-200 dark:border-gray-700 pb-3">
                 <i class="fas fa-globe text-indigo-600 dark:text-indigo-400"></i>
-                Regional
+                {{ __('settings.regional') }}
             </h2>
 
             <div class="space-y-6">
@@ -145,9 +145,9 @@
                     <div class="flex-1">
                         <label class="text-gray-800 dark:text-white font-semibold text-lg flex items-center gap-2">
                             <i class="fas fa-clock text-indigo-500 dark:text-indigo-400"></i>
-                            Zona Horaria
+                            {{ __('settings.timezone') }}
                         </label>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Configura tu zona horaria</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">{{ __('settings.timezone_description') }}</p>
                     </div>
                     <div class="flex-shrink-0 ml-4">
                         <select 
@@ -168,9 +168,9 @@
                     <div class="flex-1">
                         <label class="text-gray-800 dark:text-white font-semibold text-lg flex items-center gap-2">
                             <i class="fas fa-calendar text-indigo-500 dark:text-indigo-400"></i>
-                            Formato de Fecha
+                            {{ __('settings.date_format') }}
                         </label>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Cómo se muestran las fechas</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">{{ __('settings.date_format_description') }}</p>
                     </div>
                     <div class="flex-shrink-0 ml-4">
                         <select 
@@ -195,20 +195,20 @@
                 class="flex-1 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-bold py-4 px-6 rounded-lg transition duration-200 transform hover:scale-105 flex items-center justify-center gap-2"
             >
                 <i class="fas fa-save"></i>
-                Guardar Configuración
+                {{ __('settings.save_configuration') }}
             </button>
         </div>
     </form>
         
     <div class="mt-4">
-        <form action="{{ route('settings.reset') }}" method="POST" onsubmit="return confirm('¿Estás seguro de restaurar la configuración por defecto?')">
+        <form action="{{ route('settings.reset') }}" method="POST" onsubmit=`return confirm('{{ __('settings.confirm_restore') }}')`>
             @csrf
             <button 
                 type="submit" 
                 class="w-full bg-gray-500 hover:bg-gray-600 dark:bg-gray-600 dark:hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center gap-2"
             >
                 <i class="fas fa-undo"></i>
-                Restaurar Valores por Defecto
+                {{ __('settings.restore_defaults') }}
             </button>
         </form>
     </div>
@@ -216,19 +216,16 @@
 
 @push('scripts')
 <script>
-    // Inicializar y animar los toggles
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.toggle-checkbox').forEach(checkbox => {
             const dot = checkbox.parentElement.querySelector('.dot');
             
-            // Inicializar posición según estado del checkbox
             if (checkbox.checked) {
                 dot.style.transform = 'translateX(24px)';
             } else {
                 dot.style.transform = 'translateX(0)';
             }
             
-            // Manejar cambios
             checkbox.addEventListener('change', function() {
                 if (this.checked) {
                     dot.style.transform = 'translateX(24px)';
@@ -238,8 +235,6 @@
             });
         });
     });
-
-    // Preview del tema en tiempo real
     function previewTheme(theme) {
         window.changeTheme(theme);
     }

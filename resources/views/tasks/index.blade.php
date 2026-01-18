@@ -1,21 +1,21 @@
 @extends('layout.app')
 
-@section('title', 'Mis Tareas')
+@section('title', __('tasks.my_tasks'))
 
 @section('content')
     <!-- Header -->
     <div class="flex justify-between items-center mb-8">
         <div>
             <h1 class="text-4xl font-bold text-gray-800 dark:text-white transition-colors duration-300">
-                <i class="fas fa-tasks text-indigo-600 dark:text-indigo-400"></i> Mis Tareas
+                <i class="fas fa-tasks text-indigo-600 dark:text-indigo-400"></i> {{ __('tasks.my_tasks') }}
             </h1>
-            <p class="text-gray-600 dark:text-gray-300 mt-2">Bienvenido, <span class="font-semibold">{{ Auth::user()->name }}</span></p>
+            <p class="text-gray-600 dark:text-gray-300 mt-2">{{ __('tasks.welcome_user', ['name' => Auth::user()->name]) }}</p>
         </div>
         <form action="{{ route('logout') }}" method="POST">
             @csrf
             <button type="submit" class="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white px-4 py-2 rounded-lg transition duration-200 flex items-center gap-2">
                 <i class="fas fa-sign-out-alt"></i>
-                Cerrar Sesión
+                {{ __('auth.logout') }}
             </button>
         </form>
     </div>
@@ -34,14 +34,14 @@
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6 mb-8 transition-colors duration-300">
         <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
             <i class="fas fa-plus-circle text-indigo-600 dark:text-indigo-400"></i>
-            Crear Nueva Tarea
+            {{ __('tasks.create_task') }}
         </h2>
         <form action="{{ route('tasks.store') }}" method="POST" class="space-y-4">
             @csrf
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="md:col-span-2">
                     <label for="title" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                        Título <span class="text-red-500">*</span>
+                        {{ __('tasks.title') }} <span class="text-red-500">*</span>
                     </label>
                     <input 
                         type="text" 
@@ -50,7 +50,7 @@
                         required
                         maxlength="150"
                         class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
-                        placeholder="Ej: Completar informe mensual"
+                        placeholder="{{ __('tasks.title_placeholder') }}"
                         value="{{ old('title') }}"
                     >
                     @error('title')
@@ -60,14 +60,14 @@
                 
                 <div class="md:col-span-2">
                     <label for="content" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                        Descripción
+                        {{ __('tasks.description') }}
                     </label>
                     <textarea 
                         name="content" 
                         id="content" 
                         rows="3"
                         class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
-                        placeholder="Añade detalles sobre la tarea..."
+                        placeholder="{{ __('tasks.description_placeholder') }}"
                     >{{ old('content') }}</textarea>
                     @error('content')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -76,7 +76,7 @@
                 
                 <div>
                     <label for="due_date" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                        <i class="fas fa-calendar-alt text-indigo-600 dark:text-indigo-400"></i> Fecha de Vencimiento
+                        <i class="fas fa-calendar-alt text-indigo-600 dark:text-indigo-400"></i> {{ __('tasks.due_date') }}
                     </label>
                     <input 
                         type="date" 
@@ -96,7 +96,7 @@
                         class="w-full bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg transition duration-200 transform hover:scale-105 flex items-center justify-center gap-2"
                     >
                         <i class="fas fa-plus"></i>
-                        Añadir Tarea
+                        {{ __('tasks.add_task') }}
                     </button>
                 </div>
             </div>
@@ -108,7 +108,7 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 transition-colors duration-300">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm">Total Tareas</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">{{ __('tasks.total_tasks') }}</p>
                     <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">{{ $tasks->count() }}</p>
                 </div>
                 <i class="fas fa-list text-indigo-300 text-4xl"></i>
@@ -117,7 +117,7 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 transition-colors duration-300">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm">Completadas</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">{{ __('tasks.completed_tasks') }}</p>
                     <p class="text-3xl font-bold text-green-600 dark:text-green-400">{{ $tasks->whereNotNull('completed_at')->count() }}</p>
                 </div>
                 <i class="fas fa-check-circle text-green-300 text-4xl"></i>
@@ -126,7 +126,7 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 transition-colors duration-300">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm">Pendientes</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">{{ __('tasks.pending_tasks') }}</p>
                     <p class="text-3xl font-bold text-yellow-600 dark:text-yellow-400">{{ $tasks->whereNull('completed_at')->count() }}</p>
                 </div>
                 <i class="fas fa-clock text-yellow-300 text-4xl"></i>
@@ -138,13 +138,13 @@
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6 transition-colors duration-300">
         <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
             <i class="fas fa-clipboard-list text-indigo-600 dark:text-indigo-400"></i>
-            Lista de Tareas
+            {{ __('tasks.task_list') }}
         </h2>
 
         @if($tasks->isEmpty())
             <div class="text-center py-12">
                 <i class="fas fa-inbox text-gray-300 dark:text-gray-600 text-6xl mb-4"></i>
-                <p class="text-gray-500 dark:text-gray-400 text-lg">No tienes tareas aún. ¡Crea tu primera tarea arriba!</p>
+                <p class="text-gray-500 dark:text-gray-400 text-lg">{{ __('tasks.no_tasks') }}</p>
             </div>
         @else
             <div class="space-y-4">
@@ -188,9 +188,9 @@
                                             <i class="fas fa-calendar-alt"></i>
                                             {{ $task->due_date->format('d/m/Y') }}
                                             @if($isOverdue)
-                                                <span class="text-xs bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 px-2 py-1 rounded-full ml-1">Vencida</span>
+                                                <span class="text-xs bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 px-2 py-1 rounded-full ml-1">{{ __('tasks.overdue') }}</span>
                                             @elseif($isDueSoon)
-                                                <span class="text-xs bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 px-2 py-1 rounded-full ml-1">Hoy</span>
+                                                <span class="text-xs bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 px-2 py-1 rounded-full ml-1">{{ __('tasks.today') }}</span>
                                             @endif
                                         </span>
                                     @endif
@@ -198,7 +198,7 @@
                                     @if($isCompleted)
                                         <span class="flex items-center gap-1 text-green-600 dark:text-green-400">
                                             <i class="fas fa-check"></i>
-                                            Completada el {{ $task->completed_at->format('d/m/Y') }}
+                                            {{ __('tasks.completed_on', ['date' => $task->completed_at->format('d/m/Y')]) }}
                                         </span>
                                     @endif
                                 </div>
@@ -216,16 +216,16 @@
                                     class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition duration-200 text-sm flex items-center gap-1"
                                 >
                                     <i class="fas fa-edit"></i>
-                                    Editar
+                                    {{ __('tasks.edit') }}
                                 </button>
                                 
                                 <!-- Botón eliminar -->
-                                <form action="{{ route('tasks.destroy', $task) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta tarea?')">
+                                <form action="{{ route('tasks.destroy', $task) }}" method="POST" onsubmit=`return confirm('{{ __('tasks.confirm_delete') }}')`>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white px-3 py-2 rounded-lg transition duration-200 text-sm flex items-center gap-1">
                                         <i class="fas fa-trash"></i>
-                                        Eliminar
+                                        {{ __('tasks.delete') }}
                                     </button>
                                 </form>
                             </div>
@@ -242,7 +242,7 @@
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
                     <i class="fas fa-edit text-indigo-600 dark:text-indigo-400"></i>
-                    Editar Tarea
+                    {{ __('tasks.edit_task') }}
                 </h3>
                 <button onclick="closeEditModal()" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-2xl">
                     <i class="fas fa-times"></i>
@@ -255,7 +255,7 @@
                 
                 <div>
                     <label for="edit_title" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                        Título <span class="text-red-500">*</span>
+                        {{ __('tasks.title') }} <span class="text-red-500">*</span>
                     </label>
                     <input 
                         type="text" 
@@ -269,7 +269,7 @@
                 
                 <div>
                     <label for="edit_content" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                        Descripción
+                        {{ __('tasks.description') }}
                     </label>
                     <textarea 
                         name="content" 
@@ -281,7 +281,7 @@
                 
                 <div>
                     <label for="edit_due_date" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                        <i class="fas fa-calendar-alt text-indigo-600 dark:text-indigo-400"></i> Fecha de Vencimiento
+                        <i class="fas fa-calendar-alt text-indigo-600 dark:text-indigo-400"></i> {{ __('tasks.due_date') }}
                     </label>
                     <input 
                         type="date" 
@@ -297,7 +297,7 @@
                         class="flex-1 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg transition duration-200 transform hover:scale-105"
                     >
                         <i class="fas fa-save mr-2"></i>
-                        Guardar Cambios
+                        {{ __('tasks.save_changes') }}
                     </button>
                     <button 
                         type="button" 
@@ -305,7 +305,7 @@
                         class="flex-1 bg-gray-500 hover:bg-gray-600 dark:bg-gray-600 dark:hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200"
                     >
                         <i class="fas fa-times mr-2"></i>
-                        Cancelar
+                        {{ __('tasks.cancel') }}
                     </button>
                 </div>
             </form>

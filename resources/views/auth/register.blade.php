@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="{{ app()->getLocale() }}" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrarse</title>
+    <title>{{ __('auth.register') }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -14,8 +14,8 @@
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 min-h-screen flex items-center justify-center p-4 transition-colors duration-300">
     <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 w-full max-w-md transition-colors duration-300">
         <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-2">Crear Cuenta</h1>
-            <p class="text-gray-600 dark:text-gray-400">Regístrate para comenzar a gestionar tus tareas</p>
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-2">{{ __('auth.create_account') }}</h1>
+            <p class="text-gray-600 dark:text-gray-400">{{ __('auth.register_subtitle') }}</p>
         </div>
 
         @if($errors->any())
@@ -33,7 +33,7 @@
             
             <div>
                 <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    Nombre Completo
+                    {{ __('auth.full_name') }}
                 </label>
                 <input 
                     type="text" 
@@ -42,13 +42,13 @@
                     required
                     value="{{ old('name') }}"
                     class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
-                    placeholder="Juan Pérez"
+                    placeholder="{{ __('auth.name_placeholder') }}"
                 >
             </div>
 
             <div>
                 <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    Correo Electrónico
+                    {{ __('auth.email') }}
                 </label>
                 <input 
                     type="email" 
@@ -57,13 +57,13 @@
                     required
                     value="{{ old('email') }}"
                     class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
-                    placeholder="tu@email.com"
+                    placeholder="{{ __('auth.email_placeholder') }}"
                 >
             </div>
 
             <div>
                 <label for="password" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    Contraseña
+                    {{ __('auth.password') }}
                 </label>
                 <input 
                     type="password" 
@@ -72,38 +72,38 @@
                     required
                     minlength="8"
                     class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
-                    placeholder="Mínimo 8 caracteres"
+                    placeholder="{{ __('auth.password_min_8') }}"
                 >
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">La contraseña debe tener al menos 8 caracteres</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ __('auth.password_requirement') }}</p>
             </div>
 
             <button 
                 type="submit" 
                 class="w-full bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg transition duration-200 transform hover:scale-105"
             >
-                Crear Cuenta
+                {{ __('auth.create_account') }}
             </button>
         </form>
 
         <div class="mt-6 text-center">
             <p class="text-gray-600 dark:text-gray-400">
-                ¿Ya tienes cuenta? 
+                {{ __('auth.already_have_account') }} 
                 <a href="{{ route('login') }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold">
-                    Inicia sesión aquí
+                    {{ __('auth.login_here') }}
                 </a>
             </p>
         </div>
     </div>
 
     <script>
-        // Aplicar tema del sistema por defecto
+        // Apply system theme by default
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.classList.add('dark');
         } else {
             document.documentElement.classList.remove('dark');
         }
 
-        // Escuchar cambios en el tema del sistema
+        // Listen for changes in the system theme
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
             if (e.matches) {
                 document.documentElement.classList.add('dark');
