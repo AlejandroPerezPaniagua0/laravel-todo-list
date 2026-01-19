@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class TaskReminder extends Model
 {
+    use HasFactory;
     protected $fillable = [
         "remind_at",
         "send_at",
